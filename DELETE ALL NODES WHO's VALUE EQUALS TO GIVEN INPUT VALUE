@@ -1,0 +1,66 @@
+```java
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class Main {
+
+    static Node deleteByValue(Node head, int val) {
+
+        // Delete matching nodes from the head
+        while (head != null && head.data == val) {
+            head = head.next;
+        }
+
+        Node temp = head;
+
+        // Delete matching nodes from the remaining list
+        while (temp != null && temp.next != null) {
+            if (temp.next.data == val) {
+                temp.next = temp.next.next;
+            } else {
+                temp = temp.next;
+            }
+        }
+
+        return head;
+    }
+
+    static void display(Node head) {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+
+        // Create linked list: 10 -> 20 -> 30 -> 20 -> 40 -> null
+        Node head = new Node(10);
+        head.next = new Node(20);
+        head.next.next = new Node(30);
+        head.next.next.next = new Node(20);
+        head.next.next.next.next = new Node(40);
+
+        System.out.println("Original Linked List:");
+        display(head);
+
+        int val = 20;
+
+        head = deleteByValue(head, val);
+
+        System.out.println("After deleting value " + val + ":");
+        display(head);
+    }
+}
+```
