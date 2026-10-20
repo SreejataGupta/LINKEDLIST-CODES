@@ -1,0 +1,74 @@
+// Definition of a singly linked list Node
+class Node {
+    int data;
+    Node next;
+
+    // Constructor with only data
+    Node(int val) {
+        data = val;
+        next = null;
+    }
+
+    // Constructor with data and next pointer
+    Node(int val, Node nextNode) {
+        data = val;
+        next = nextNode;
+    }
+}
+
+public class LinkedListInsertion {
+
+    // Function to insert an element at position k
+    public static Node insertPosition(Node head, int el, int k) {
+        if (head == null) {
+            if (k == 1) {
+                return new Node(el);
+            } else {
+                return head;
+            }
+        }
+        if (k == 1) {
+            return new Node(el, head);
+        }
+        int cnt = 0;
+        Node temp = head;
+        while (temp != null) {
+            cnt++;
+            if (cnt == (k - 1)) {
+                Node x = new Node(el, temp.next);
+                temp.next = x;
+                break;
+            }
+            temp = temp.next;
+        }
+        return head;
+    }
+
+    // Helper function to print the linked list
+    public static void printList(Node head) {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        // Creating initial linked list: 10 -> 20 -> 30 -> null
+        Node head = new Node(10);
+        head.next = new Node(20);
+        head.next.next = new Node(30);
+
+        System.out.print("Original Linked List: ");
+        printList(head);
+
+        // Insert 25 at position 3
+        int el = 25;
+        int k = 3;
+        head = insertPosition(head, el, k);
+
+        System.out.print("After inserting " + el + " at position " + k + ": ");
+        printList(head);
+    }
+}
