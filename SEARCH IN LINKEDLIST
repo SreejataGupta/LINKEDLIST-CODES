@@ -1,0 +1,43 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int val) {
+        data = val;
+        next = null;
+    }
+}
+
+public class LinkedListSearch {
+
+    // Function to check if a key exists in the linked list
+    public static boolean searchKey(Node head, int key) {
+        Node temp = head;
+        
+        // Traverse through the linked list
+        while (temp != null) {
+            if (temp.data == key) {
+                return true; // Key found
+            }
+            temp = temp.next;
+        }
+        
+        return false; // Key not found
+    }
+
+    public static void main(String[] args) {
+        // Creating linked list: 10 -> 20 -> 30 -> 40 -> null
+        Node head = new Node(10);
+        head.next = new Node(20);
+        head.next.next = new Node(30);
+        head.next.next.next = new Node(40);
+
+        int keyToFind = 30;
+        
+        if (searchKey(head, keyToFind)) {
+            System.out.println("Element " + keyToFind + " is present in the linked list.");
+        } else {
+            System.out.println("Element " + keyToFind + " is NOT present in the linked list.");
+        }
+    }
+}
