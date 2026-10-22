@@ -1,0 +1,36 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int val) {
+        data = val;
+        next = null;
+    }
+}
+
+public class LinkedListLength {
+
+    // Function to find the length of the linked list
+    public static int getCount(Node head) {
+        int count = 0;
+        Node temp = head;
+        
+        // Traverse through the linked list and increment count
+        while (temp != null) {
+            count++;
+            temp = temp->next; // In Java, use temp.next
+        }
+        
+        return count;
+    }
+
+    public static void main(String[] args) {
+        // Creating linked list: 10 -> 20 -> 30 -> 40 -> null
+        Node head = new Node(10);
+        head.next = new Node(20);
+        head.next.next = new Node(30);
+        head.next.next.next = new Node(40);
+
+        System.out.println("Length of the linked list is: " + getCount(head));
+    }
+}
