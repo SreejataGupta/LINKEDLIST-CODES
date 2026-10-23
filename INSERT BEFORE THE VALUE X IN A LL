@@ -1,0 +1,29 @@
+class Solution {
+    public static Node insertBeforeValue(Node head, int x, int el) {
+        // Case 1: If the list is empty
+        if (head == null) {
+            return null;
+        }
+
+        // Case 2: If the value 'x' is at the head node itself
+        if (head.data == x) {
+            return new Node(el, head);
+        }
+
+        Node temp = head;
+        
+        // Traverse the list to find the node whose NEXT node has the value 'x'
+        while (temp.next != null) {
+            if (temp.next.data == x) {
+                // Create the new node pointing to temp.next (which is the node with value x)
+                Node newNode = new Node(el, temp.next);
+                // Link the current node to the new node
+                temp.next = newNode;
+                break;
+            }
+            temp = temp.next;
+        }
+
+        return head;
+    }
+}
