@@ -1,0 +1,31 @@
+class Node {
+    int data;
+    Node next;
+    Node back;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+        this.back = null;
+    }
+}
+
+public class Solution {
+    // Function to insert a new node before the head
+    public static Node insertBeforeHead(Node head, int val) {
+        // Create the new node
+        Node newHead = new Node(val);
+
+        // If the list is empty, the new node becomes the head
+        if (head == null) {
+            return newHead;
+        }
+
+        // Link the new node to the current head
+        newHead.next = head;
+        head.back = newHead;
+
+        // Return the new node as the updated head of the list
+        return newHead;
+    }
+}
