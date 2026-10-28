@@ -1,0 +1,41 @@
+class DoublyLinkedList {
+    private class Node {
+        int val;
+        Node prev;
+        Node next;
+        
+        Node(int val) {
+            this.val = val;
+            this.prev = null;
+            this.next = null;
+        }
+    }
+    
+    private Node head;
+    private Node tail;
+    private int size;
+    
+    public DoublyLinkedList() {
+        // Initialize dummy sentinels
+        head = new Node(0);
+        tail = new Node(0);
+        head.next = tail;
+        tail.prev = head;
+        size = 0;
+    }
+    
+    /** Inserts a new node with the given value right before the tail node. */
+    public void insertBeforeTail(int val) {
+        Node newNode = new Node(val);
+        Node prevNode = tail.prev; // The node currently right before the tail
+        
+        // 1. Connect newNode between prevNode and tail
+        prevNode.next = newNode;
+        newNode.prev = prevNode;
+        
+        newNode.next = tail;
+        tail.prev = newNode;
+        
+        size++;
+    }
+}
